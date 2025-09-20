@@ -1,0 +1,24 @@
+module threed_packed_array();
+    bit [2:0][1:0][7:0] m_data; // 3-D packed array
+    int i, j;
+
+    initial begin
+        m_data[0] = 16'h0102;
+        m_data[1] = 16'h0304;
+        m_data[2] = 16'h0506;
+
+        $display("m_data = 0x%h", m_data);
+
+        m_data = 48'hcafe_face_0708;
+
+        $display("m_data = 0x%h", m_data);
+
+        foreach (m_data[i]) begin
+            $display("m_data(%0d) = 0x%h", i, m_data[i]);
+            foreach (m_data[i][j]) begin
+                $display("m_data[%0d][%0d] = 0x%h", i, j, m_data[i][j]);
+            end
+        end
+    end
+endmodule
+
