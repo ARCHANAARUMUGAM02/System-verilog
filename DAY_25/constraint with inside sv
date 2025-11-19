@@ -1,0 +1,20 @@
+class packet ;
+   rand bit[3:0]addr;
+  rand bit [3:0]start_addr;
+  rand bit [3:0]end_addr;
+  constraint addr_range{ addr inside {[start_addr:end_addr]};}
+endclass
+//constraint constraint_blocks ::addr_range{addr<5;}
+module constraint_tb;
+  packet pkt1;
+  //packet pk;t2
+  //pkt=new();
+  initial begin
+    pkt1=new();
+    //pkt2=new();
+    repeat(10)begin
+      pkt1.randomize();
+      $display("values randomized for pkt1=%0d",pkt1.addr);
+    end
+  end
+endmodule
